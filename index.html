@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script src="data/nouns.js"></script>
+        <script src="data/verbs.js"></script>
+        <script src="data/adjectives.js"></script>
+        <script src="data/personal_pronouns.js"></script>
+        <script src="data/possessive_pronouns.js"></script>
+    </head>
+    <style>
+    </style>
+    <script>
+        var wordTypes = {
+            noun: 0,
+            verb: 1,
+            adjective: 2,
+            personal_pronoun: 3,
+            possessive_pronoun: 4
+        }
+        function create() {
+            document.getElementById("test").textContent = generator.getRandomWord()
+        }
+        function generator() {
+            var getRandomWord = function(type) {
+                if(!type || type > 0 || type <= Object.keys(wordTypes).length) {
+                    type = Math.floor(Math.random()*(Object.keys(wordTypes).length - 1))
+                }
+                switch(type) {
+                    case wordTypes.noun:
+                        return nouns[Math.floor(Math.random()*(nouns.length - 1))]
+                    case wordTypes.verb:
+                        return verbs[Math.floor(Math.random()*(verbs.length - 1))]
+                    case wordTypes.adjective:
+                        return adjectives[Math.floor(Math.random()*(adjectives.length - 1))]
+                    case wordTypes.personal_pronoun:
+                        return personal_pronouns[Math.floor(Math.random()*(personal_pronouns.length - 1))]
+                    case wordTypes.possessive_pronoun:
+                        return possessive_pronouns[Math.floor(Math.random()*(possessive_pronouns.length - 1))]
+                    default:
+                        console.error("Error: no such word type for enum index " + type)
+                }
+            }
+
+            return {
+                getRandomWord: getRandomWord
+            }
+        }
+    </script>
+
+    <body>
+        <button onClick="create()">Create</button>
+        <div id="test">
+        </div>
+    </body>
+
+    <script>
+        var generator
+        window.onload = function() {
+            generator = generator()
+        }
+    </script>
+</html>
