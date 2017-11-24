@@ -1,0 +1,4 @@
+var modus = [
+    "singular",
+    "plural"
+]
