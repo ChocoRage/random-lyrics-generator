@@ -1,15 +1,23 @@
 var utils = {
-    declinationApiCall: function(verb, tense, person, callback) {
+    conjugationApiCall: function(verb, sentence, callback) {
         var xmlhttp = new XMLHttpRequest()
         xmlhttp.onreadystatechange = function() {
-            if (xmlhttp.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
+            if (xmlhttp.readyState == XMLHttpRequest.DONE) {
                if (xmlhttp.status == 200) {
                    callback(JSON.parse(xmlhttp.response))
                }
             }
         }
-        var url = config.declinationApiUrl + verb + "?tense=" + tense + "&person=" + person
+        var url = config.conjugationApiUrl + verb + "?tense=" + sentence.tense + "&person=" + sentence.person
         xmlhttp.open("GET", url, true);
         xmlhttp.send();
     }
+}
+
+Object.prototype.getAt = function(index) {
+    return this[Object.keys(this)[index]]
+}
+
+Object.prototype.getKeyAt = function(index) {
+    return Object.keys(this)[index]
 }

@@ -3,30 +3,23 @@
     <head>
         <meta charset="utf-8">
         <script src="config.js"></script>
-        <script src="data/nouns.js"></script>
-        <script src="data/verbs.js"></script>
-        <script src="data/modal_verbs.js"></script>
-        <script src="data/adjectives.js"></script>
-        <script src="data/personal_pronouns.js"></script>
-        <script src="data/possessive_pronouns.js"></script>
-        <script src="data/tenses.js"></script>
-        <script src="data/persons.js"></script>
+        <script src="data/dictionary_ENG.js"></script>
         <script src="utils.js"></script>
         <script src="generator.js"></script>
+        <link rel="stylesheet" href="styles.css">
+        <link href="https://fonts.googleapis.com/css?family=Thasadith" rel="stylesheet">
     </head>
     <body>
-        <button onClick="create()">Create</button>
-        <div id="test">
-        </div>
+        <div id="background-image"></div>
+        <button onClick="generator.createSentence()">Create</button>
+        <br>
+        <div id="lyrics"></div>
     </body>
-
     <script>
-        var generator
-        window.onload = function() {
+        var generator;
+
+        (function() {
             generator = generator()
-        }
-        function create() {
-            generator.create()
-        }
+        })()
     </script>
 </html>
